@@ -61,7 +61,8 @@
     
     ESPECIFICACIONES TÉCNICAS:
 
-    1- Crear nueva branch del proyecto.
+    1- Crear nueva branch del proyecto:
+    la rama que se sube es 'Javier_Tribo_TEST_Node
 
     2- Crear una utilidad genérica en ./src/utils que recupere de manera dinámica el json de configuración en base al entorno y que exponga sus propiedades.
        (La variable de entorno está declarada dentro del fichero .env y se puede recuperar con la propiedad global process.env.NODE_ENV)

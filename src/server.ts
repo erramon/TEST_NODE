@@ -25,6 +25,8 @@ class Server {
 
   routes(): void {
     this.app.use('/', RegisterRoutes);
+    this.app.use('/api/:apiVal', RegisterRoutes);// creación de csv a partir de json
+    this.app.use('/config/:apiVal', RegisterRoutes); // lectura de api según entorno
   }
 
   start() {
