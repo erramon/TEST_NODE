@@ -1,0 +1,37 @@
+He escrito comentarios (en ingles) en cada uno de los archivos (no en todos) donde explico brevemente el proposito de cada uno y de algunas decisiones
+que tome (encima de su correspondiente linea) a lo largo de este desarrollo.
+
+Archivos creados y modificados: 
+    -src
+        -component
+            -api-call.component.ts -> recibe el parametro "name" (nombre de api) especificado en routes.ts, hace el request a la api correspondiente y genera los archivos usando utils/generateFiles.ts
+            -index.controller.ts (modificado) -> Devuelve un json con informacion acerca del enviroment seleccionado
+        
+        -interfaces
+            -envModes.ts -> exporta una interfaz para poder manejar los json dentro de la carpeta config
+        
+        -utils
+            -generateFiles.ts -> particiona la respuestas de la api, las convierte a formato aceptable para csv, crea los archivos y los guarda en su directorio uso de "loadCfg.ts" y "manageDirectories.ts.
+            -loadCfg.ts -> carga el archivo de configuracion asignado en .env.
+            -manageDirectories.ts -> Revisa si existe el directorio destino lo crea de ser necesario y de existir archivos dentro los elimina.
+
+        -.env(modificado) -> movi este archivo para que el servidor pueda encontrarlo y cargar sus variables.
+
+    -routes.ts(modificado) ->  importacion y implementacion de "api-call.component.ts"
+
+    -server.ts(modificado) -> Implementacion de "loadCfg.ts" para mostrar la informacion asociada al archivo de configuracion al iniciar el servidor.
+
+Rutas: 
+
+    / -> devuelve la info del json de configuracion asignado en .env
+    /api=[name] -> consulta la api correspondiente al parametro "name" (api1 y api2) y guarda sus archivos en el directorio especificado.
+    
+Como ejecutar:
+
+ejecutar en terminal dentro de la carpeta src
+
+    ts-node server.ts
+
+o luego de hacer build (npm run compile)
+
+    node server.js (dentro de la carpeta build)
