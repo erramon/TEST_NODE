@@ -1,12 +1,20 @@
-import API_MOCS  from './../config/dev.json'
-import { Request, Response } from 'express';
+import * as dev from './../config/dev.json'
+import * as pre from './../config/pre.json'
+import * as pro from './../config/pro.json'
 
-class Main {
-    public async index(req: Request, res: Response) {
-        if (process.env.NODE_ENV === 'dev') {
-            res.json(API_MOCS);
-        }
+
+function main(){
+    console.log('entro')
+
+    if (process.env.NODE_ENV === 'dev') {
+        return dev;
+    }
+    else if (process.env.NODE_ENV === 'pre') {
+        return pre;
+    }
+    else {
+        return pro
     }
 }
+export const entorno = main()
 
-export const main = new Main();

@@ -1,6 +1,6 @@
 var request = require('request');
-
-const url = 'https://mocks.free.beeceptor.com/api2';
+const main = require('../utils/main');
+const url = main.entorno.API_MOCS.api2;
 
 import { Request, Response } from 'express';
 

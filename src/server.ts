@@ -3,7 +3,6 @@ import morgan from 'morgan';
 import cors from 'cors';
 const dotenv = require('dotenv');
 dotenv.config();
-import { main } from "./utils/main";
 
 
 import RegisterRoutes from './routes';
