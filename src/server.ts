@@ -4,7 +4,8 @@ import cors from 'cors';
 const dotenv = require('dotenv');
 dotenv.config();  
 
-import RegisterRoutes from './routes';
+import RegisterRoutes from './routes/routes';
+import dataExportRoutes from './routes/dataExport.routes';
 
 class Server {
   public app: Application;
@@ -25,6 +26,7 @@ class Server {
 
   routes(): void {
     this.app.use('/', RegisterRoutes);
+    this.app.use('/export', dataExportRoutes);
   }
 
   start() {
