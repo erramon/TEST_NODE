@@ -4,7 +4,7 @@
       "url": "https://mocks.free.beeceptor.com/api1"
     },
     "api2": {
-      "url": "https://mocks.free.beeceptor.com/api2"
+      "url": " https://dog.ceo/api/breeds/list/all"
     }
   }
 }

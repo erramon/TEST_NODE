@@ -4,8 +4,6 @@ import * as pro from './../config/pro.json'
 
 
 function main(){
-    console.log('entro')
-
     if (process.env.NODE_ENV === 'dev') {
         return dev;
     }
