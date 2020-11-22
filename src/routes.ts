@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { indexController } from './components/index.controller';
+import { apiUno } from './components/APIUnoController'
+import { apiDos } from './components/APIDosController'
 
 class RegisterRoutes {
 
@@ -9,7 +10,8 @@ class RegisterRoutes {
          this.config();
     }
     config(): void {
-        this.router.get('/', indexController.index);
+        this.router.get('/api-uno', apiUno.index)
+        this.router.get('/api-dos', apiDos.index)
     }
 }
 
