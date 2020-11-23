@@ -11,7 +11,7 @@ class APIUnoController {
         request(url,
             function (error: any, response: { statusCode: number; body: any; }, body: string) {
                 if (!error && response.statusCode == 200) {
-                    const json = JSON.parse(body);
+                    const json = JSON.parse(body).slice(0,999);
                     const csvData = csvjson.toCSV(json, {
                         headers: 'key'
                     });
