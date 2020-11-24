@@ -52,7 +52,7 @@
 
     FAKE BRIEFING :
     
-    El cliente solicita un desarrollo que permita hacer mensualmente un volcado de la información recuperada de dos apis en ficheros csv para posteriormente importarla en una herramienta de dashboarding. El proceso de iportación de dicha herramienta no es capaz de parsear más de 999 filas por csv.
+    El cliente solicita un desarrollo que permita hacer mensualmente un volcado de la información recuperada de dos apis en ficheros csv para posteriormente importarla en una herramienta de dashboarding. El proceso de importación de dicha herramienta no es capaz de parsear más de 999 filas por csv.
 
     Cada bloque de ficheros generado tiene que quedarse en una carpeta fija e independiente para que la herramienta de dashboarding las recupere de una ruta concreta. Al ser un proceso mensual, cada vez que se inicie el proceso se ha de vaciar la carpeta.
 
