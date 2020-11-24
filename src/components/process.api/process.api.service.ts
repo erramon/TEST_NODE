@@ -2,7 +2,12 @@ import { ExternalDataApiUtils } from "../../utils/external.api";
 import { CSVUtils } from "./utils";
 
 export class ProcessApiService {
-  private ROWS_PER_FILE = 999;
+
+    private ROWS_PER_FILE = 999;
+
+    constructor(){
+        CSVUtils.createRootFolder()
+    }
 
   async processData(url: string): Promise<boolean> {
     return new Promise<boolean>(async (resolve, reject) => {

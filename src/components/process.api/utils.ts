@@ -1,9 +1,15 @@
-import { writeFileSync, existsSync, mkdirSync, unlinkSync, readdirSync } from "fs";
+import {
+  writeFileSync,
+  existsSync,
+  mkdirSync,
+  unlinkSync,
+  readdirSync,
+} from "fs";
 import { join } from "path";
 import { IItem } from "../../utils/models/external.api.model";
 import { parseAsync } from "json2csv";
 
-const OUTPUT_FOLDER = 'outputs';
+const OUTPUT_FOLDER = "outputs";
 
 export abstract class CSVUtils {
   public static async saveDataCSV(
@@ -12,7 +18,7 @@ export abstract class CSVUtils {
     items: IItem[]
   ): Promise<boolean> {
     const csvItems = await parseAsync(items);
-    const path = CSVUtils.getPathCSV(folderName);    
+    const path = CSVUtils.getPathCSV(folderName);
     writeFileSync(`${path}/${fileName}.csv`, csvItems);
     return true;
   }
@@ -27,20 +33,27 @@ export abstract class CSVUtils {
   }
 
   public static clearFolder(folderName: string) {
-    const pathOutput = join(__dirname, `../../${OUTPUT_FOLDER}`, folderName);    
+    const pathOutput = join(__dirname, `../../${OUTPUT_FOLDER}`, folderName);
     if (existsSync(pathOutput)) {
-      readdirSync(pathOutput).forEach((file)=>{
+      readdirSync(pathOutput).forEach((file) => {
         unlinkSync(`${pathOutput}/${file}`);
-      })
-    }else{
+      });
+    } else {
       CSVUtils.createFolder(folderName);
     }
   }
 
   public static createFolder(folderName: string) {
-    const pathOutput = join(__dirname, "../../outputs", folderName);
+    const pathOutput = join(__dirname, `../../${OUTPUT_FOLDER}`, folderName);
     if (!existsSync(pathOutput)) {
       mkdirSync(pathOutput);
+    }
+  }
+
+  public static createRootFolder(){
+    const rootFolder = join(__dirname, `../../${OUTPUT_FOLDER}`);
+    if(!existsSync(rootFolder)){
+      mkdirSync(rootFolder);
     }
   }
 }
