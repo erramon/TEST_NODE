@@ -1,6 +1,8 @@
 import express, { Application } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+import { readdir, unlink } from 'fs';
+import { join } from 'path'
 const dotenv = require('dotenv');
 dotenv.config();  
 
@@ -28,7 +30,16 @@ class Server {
   }
 
   start() {
-    
+
+    readdir(join(`${__dirname}/../src/outputs/`), (err, files) => {
+      if (err) throw err;
+
+      for (const file of files) {
+        unlink(join(`${__dirname}/../src/outputs/`, file), err => {
+          if (err) throw err;
+        });
+      }
+    });
     return this.app.listen(this.app.get('port'), () => {
       console.log('Server on port:', this.app.get('port'));
       console.log(`Enviroment: ${process.env.NODE_ENV}`); 

@@ -1,10 +1,16 @@
 {
   "API_MOCS": {
     "api1": {
-      "url": "https://mocks.free.beeceptor.com/api1"
+      "prot": "https",
+      "host": "mocks.free.beeceptor.com",
+      "port": 443,
+      "path": "api1"
     },
     "api2": {
-      "url": "https://mocks.free.beeceptor.com/api2"
+      "prot": "https",
+      "host": "mocks.free.beeceptor.com",
+      "port": 443,
+      "path": "api2"
     }
   }
 }

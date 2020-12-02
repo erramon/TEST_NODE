@@ -61,12 +61,12 @@
     
     ESPECIFICACIONES TÉCNICAS:
 
-    1- Crear nueva branch del proyecto.
+    1- Crear nueva branch del proyecto. ok
 
     2- Crear una utilidad genérica en ./src/utils que recupere de manera dinámica el json de configuración en base al entorno y que exponga sus propiedades.
-       (La variable de entorno está declarada dentro del fichero .env y se puede recuperar con la propiedad global process.env.NODE_ENV)
+       (La variable de entorno está declarada dentro del fichero .env y se puede recuperar con la propiedad global process.env.NODE_ENV) ok
 
     3- Dadas las url http://localhost:3000/?api=api1 y http://localhost:3000/?api=api2, modificar el routing y crear un componente con la estructura indicada que: 
-        - Recupere los datos de cada api.
-        - Teniendo en cuenta la limitación de 999 líneas por fichero, almacene los datos en formato csv en sus correspondientes rutas dentro de .src/outputs/.
-        - Vacíe su correspondiente carpeta al iniciar el proceso.
+        - Recupere los datos de cada api. ok
+        - Teniendo en cuenta la limitación de 999 líneas por fichero, almacene los datos en formato csv en sus correspondientes rutas dentro de .src/outputs/. ok
+        - Vacíe su correspondiente carpeta al iniciar el proceso. ok
