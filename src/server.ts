@@ -1,10 +1,11 @@
-import express, { Application } from 'express';
-import morgan from 'morgan';
-import cors from 'cors';
-const dotenv = require('dotenv');
-dotenv.config();  
+import "module-alias/register";
+import express, { Application } from "express";
+import morgan from "morgan";
+import cors from "cors";
+const dotenv = require("dotenv");
+dotenv.config();
 
-import RegisterRoutes from './routes';
+import RegisterRoutes from "./routes";
 
 class Server {
   public app: Application;
@@ -16,22 +17,21 @@ class Server {
   }
 
   config(): void {
-    this.app.set('port', process.env.PORT || 3000);
-    this.app.use(morgan('dev'));
+    this.app.set("port", process.env.PORT || 3000);
+    this.app.use(morgan("dev"));
     this.app.use(cors());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
   }
 
   routes(): void {
-    this.app.use('/', RegisterRoutes);
+    this.app.use("/", RegisterRoutes);
   }
 
   start() {
-    
-    return this.app.listen(this.app.get('port'), () => {
-      console.log('Server on port:', this.app.get('port'));
-      console.log(`Enviroment: ${process.env.NODE_ENV}`); 
+    return this.app.listen(this.app.get("port"), () => {
+      console.log("Server on port:", this.app.get("port"));
+      console.log(`Enviroment: ${process.env.NODE_ENV}`);
     });
   }
 }
