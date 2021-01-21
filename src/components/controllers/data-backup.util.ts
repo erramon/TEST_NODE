@@ -43,7 +43,7 @@ export function bulkDataInCSV(data: any) {
 function divideInNFiles(data: any) {
   return new Promise<void>((resolve, reject) => {
     try {
-      const datetime =  moment(new Date()).format("YYYYMMDD")
+      const datetime =  moment().format("YYYYMMDD")
 
       const parts = Math.ceil(data.length / MAX_LINES_PER_CSV);
       console.log("Splitting data in " + parts);
