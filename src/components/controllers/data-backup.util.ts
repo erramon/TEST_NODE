@@ -2,6 +2,10 @@ import * as fs from "fs";
 import * as path from "path";
 import { createObjectCsvWriter as createCSVWriter } from "csv-writer";
 
+//Import moment lib
+const moment = require('moment');
+moment.locale('es_ES');
+
 const BACKUP_DIR = "./build/outputs"; // The Place where the CSV files are located.
 const MAX_LINES_PER_CSV = 998; // Maximum of 998 lines of registers + 1 line of indexes.
 
@@ -39,7 +43,7 @@ export function bulkDataInCSV(data: any) {
 function divideInNFiles(data: any) {
   return new Promise<void>((resolve, reject) => {
     try {
-      const datetime = new Date();
+      const datetime =  moment(new Date()).format("YYYYMMDD")
 
       const parts = Math.ceil(data.length / MAX_LINES_PER_CSV);
       console.log("Splitting data in " + parts);
