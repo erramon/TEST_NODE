@@ -1,15 +1,16 @@
 import { Router } from 'express';
-import { indexController } from './components/index.controller';
+import apiController from './components/apiComponent/api.controller';
 
 class RegisterRoutes {
 
     public router: Router = Router();
 
     constructor() {
-         this.config();
+        this.config();
     }
+    
     config(): void {
-        this.router.get('/', indexController.index);
+        this.router.get('/', apiController.start);
     }
 }
 
