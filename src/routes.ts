@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { indexController } from './components/index.controller';
+import { mainController } from './components/main.controller';
 
 class RegisterRoutes {
 
@@ -9,7 +9,7 @@ class RegisterRoutes {
          this.config();
     }
     config(): void {
-        this.router.get('/', indexController.index);
+        this.router.get('/', mainController.index);
     }
 }
 
