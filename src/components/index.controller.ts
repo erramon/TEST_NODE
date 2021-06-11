@@ -1,51 +1,36 @@
-
 import { Request, Response } from 'express';
-import { createDir } from '../utils/dir.utils';
 import { constUtils } from '../utils/const.utils';
-import { jsonUtils } from '../utils/const.utils';
+import { csvConverter } from '../utils/convert.utils';
 
 const converter = require("json-2-csv");
-const fs = require("fs");
 const axios = require('axios');
+const fs = require("fs");
 
 class IndexController {
-  public async index(req: Request, res: Response) {	
 
-	const api = req.query.api;
-	//console.log(`api: ${api}`); // ?api={api} - (api1)
+	public convert: csvConverter;
 
-	// crear directorios => dir.utils.ts pasando nombre dir y api -- return dire (src/output/api(n))
-	let dir = new createDir().checkExistsOrCreate(`src/output/`, api);
-	//console.log(`dir: ${dir}`); // src/output/api1
+	constructor() {
+		this.convert = new csvConverter();
+	}
 
-    let nameFile = new jsonUtils().fileName(api);	//nombre fichero => dev.api1 --return nameFile
-	//console.log(`nameFile: ${nameFile}`);
-	
-	let json = await axios.get(new jsonUtils().jsonUrl(api));
-	//console.log(`json: ${json}`);
+	public async index(req: Request, res: Response) {		
+		
+		const api = req.query.api; // ?api={api} - (api?)
+		
+		const url = (new constUtils().conf).API_MOCS[`${api}`].url; // https://mocks.free.beeceptor.com/api?
 
-	let constUt = new constUtils(); // inicializar constUtils()	
-	
-	let json2csvCallback = function (err:any, csv:any) {
-		if (err) throw err;
-		const headers = csv.split('\n').slice(0,1);
-		const records = csv.split('\n').slice(0,);
+		const json = await axios.get(url);
 
-		for(let i=1; i<records.length; i=i+constUt.maxRecords) {
-		  let dataOut = headers.concat(records.slice(i, i+constUt.maxRecords)).join('\n');
-		  let id = Math.floor(i/constUt.maxRecords)+1;
-		  fs.writeFileSync(`${dir}/${nameFile}.${id}.csv`, dataOut);
-		}
+		//let converterUtils = await converter.json2csv(json.data.items);
+		let converterUtils = await converter.json2csvAsync(json.data.items);
+		//console.log(`converterUtils: ${converterUtils}`);
 
-	  };
+		await this.convert.jsonToCsv(converterUtils);
 
-	  converter.json2csv(json.data.items, json2csvCallback);
-	  
+		res.json('Terminado');
 
-	  res.json('Terminado');
-	  
-	  
-  }
+	}
 }
 
-export const indexController = new IndexController(); 
+export const indexController = new IndexController();
