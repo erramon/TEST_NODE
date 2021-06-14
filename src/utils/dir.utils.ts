@@ -1,18 +1,19 @@
 const fs = require("fs");
 const rimraf = require("rimraf");
 
-export class createDir {
-    checkExistsOrCreate(dir: string, api: any) {
-        let dire = `${dir}${api}`;
-        if (!fs.existsSync(dir)){
-            fs.mkdirSync(dir);
+export class DirUtils {
+    // check if directory exists
+    public existsDir(dir: string) {
+        if (fs.existsSync(dir)){
+            return true;
         }
-        if (fs.existsSync(dire)) {
-            rimraf.sync(dire);
-            fs.mkdirSync(dire);
-        }else {
-            fs.mkdirSync(dire);
-        }
-        return dire;
+    }
+    // delete a directory recursively
+    public delDir(dir: string) {
+        rimraf.sync(`${dir}`);
+    }
+    // create a directory recursively
+    public createDir(dir: string) {
+        fs.mkdirSync(`${dir}`, { recursive: true });
     }
 }

@@ -1,35 +1,25 @@
 import { Request, Response } from 'express';
-import { constUtils } from '../utils/const.utils';
-import { csvConverter } from '../utils/convert.utils';
-
-const converter = require("json-2-csv");
-const axios = require('axios');
-const fs = require("fs");
+import { utilsController } from './index.utils';
+import { IControllerComp } from './model.comtroller';
 
 class IndexController {
 
-	public convert: csvConverter;
+	public async index(req: Request, res: Response): Promise<IControllerComp> {
 
-	constructor() {
-		this.convert = new csvConverter();
-	}
+		let iController: IControllerComp;
 
-	public async index(req: Request, res: Response) {		
-		
-		const api = req.query.api; // ?api={api} - (api?)
-		
-		const url = (new constUtils().conf).API_MOCS[`${api}`].url; // https://mocks.free.beeceptor.com/api?
+		try {			
+			iController = {
+				api: req.query.api // api2
+			};
+			// initialize utilsCsvConverter and pass it the api and url variables
+			await utilsController.utilsCsvConverter(iController.api);
+			res.status(200).send('Finished process');			
+		} catch (error) {
+			console.log(`indexController: ${error}`);
+		}
 
-		const json = await axios.get(url);
-
-		//let converterUtils = await converter.json2csv(json.data.items);
-		let converterUtils = await converter.json2csvAsync(json.data.items);
-		//console.log(`converterUtils: ${converterUtils}`);
-
-		await this.convert.jsonToCsv(converterUtils);
-
-		res.json('Terminado');
-
+		return Promise.resolve(iController);
 	}
 }
 
