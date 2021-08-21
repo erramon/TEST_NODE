@@ -8,8 +8,10 @@
     "dev": "nodemon src/server.ts"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "concurrently": "^3.5.1",
     "cors": "^2.8.5",
+    "csv-writer": "^1.6.0",
     "dotenv": "^8.2.0",
     "morgan": "^1.10.0"
   },
