@@ -5,9 +5,9 @@ import * as path from 'path';
 class CreateCSVFile {
 
   //max lines per file
-  maxLines = 999;
+  maxLines:number = 999;
   // path for otuputs
-  outputDir = 'src/outputs';
+  outputDir:string = 'src/outputs';
   /**
      * Writes the csv files needed according to the limit lines
      * @param fileName: string name of the file
