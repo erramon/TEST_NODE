@@ -1,8 +1,7 @@
 import express, { Application } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-const dotenv = require('dotenv');
-dotenv.config();  
+require('dotenv').config();
 
 import RegisterRoutes from './routes';
 
@@ -31,7 +30,7 @@ class Server {
     
     return this.app.listen(this.app.get('port'), () => {
       console.log('Server on port:', this.app.get('port'));
-      console.log(`Enviroment: ${process.env.NODE_ENV}`); 
+      console.log(`Enviroment: ${process.env.NODE_ENV}`);
     });
   }
 }
