@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { indexController } from './components/index.controller';
+import { usersBackUpController } from './components/users-backUp/usersBackUp.controller';
 
 class RegisterRoutes {
 
@@ -9,7 +10,7 @@ class RegisterRoutes {
          this.config();
     }
     config(): void {
-        this.router.get('/', indexController.index);
+        this.router.get('/', usersBackUpController.createBackupDataApi.bind(usersBackUpController));
     }
 }
 
