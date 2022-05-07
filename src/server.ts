@@ -12,7 +12,7 @@ class Server {
 
   constructor() {
     this.app = express();
-    this.setEnv();
+    this.loadEnv();
     this.config();
     this.routes();
   }
@@ -25,7 +25,7 @@ class Server {
     this.app.use(express.urlencoded({ extended: false }));    
   }
 
-  setEnv() {
+  loadEnv() {
     InitEvironment.loadEnv();
   }
 

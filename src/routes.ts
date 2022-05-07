@@ -7,10 +7,10 @@ class RegisterRoutes {
     public router: Router = Router();
 
     constructor() {
-         this.config();
+        this.config();
     }
     config(): void {
-        this.router.get('/', usersBackUpController.createBackupDataApi.bind(usersBackUpController));
+        this.router.get('/', usersBackUpController.createBackupByApi);
     }
 }
 
