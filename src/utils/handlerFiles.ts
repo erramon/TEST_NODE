@@ -10,16 +10,24 @@ class HandlerFilesUtil {
     cleanDirectory(pathDirectory: string): Promise<boolean | boolean[]> {
         return new Promise(async (resolve, reject) => {
             try {
-                const files = await this.readDirectory(pathDirectory);
-                const filesDeleted: Promise<boolean>[] = [];
-                if (files.length) {
-                    files.forEach(async (file) => {
-                        filesDeleted.push(this.deleteFile(pathDirectory + '/' + file));
-                    });                    
-                    resolve(Promise.all(filesDeleted));
+                if (fs.existsSync(pathDirectory)) {
+                    const files = await this.readDirectory(pathDirectory);
+                    const filesDeleted: Promise<boolean>[] = [];
+
+                    if (files.length) {
+                        files.forEach(async (file) => {
+                            filesDeleted.push(this.deleteFile(pathDirectory + '/' + file));
+                        });
+                        resolve(Promise.all(filesDeleted));
+                    } else {                        
+                        resolve(true);
+                    }
+                    
                 } else {
+                    fs.mkdirSync(pathDirectory, { recursive: true });
                     resolve(true);
                 }
+
             } catch (err) {
                 reject(err);
             }
