@@ -29,7 +29,6 @@ class UsersBackUpController {
             }
 
         } catch (err: any) {
-            console.log(err);
             return res.status(err.status || 500).send(err);
         }
     }

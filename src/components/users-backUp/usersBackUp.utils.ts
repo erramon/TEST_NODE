@@ -27,7 +27,7 @@ class UsersBackUpUtils {
             console.error(`Error create users backUp data url: ${apiUrl}`);
         }
 
-        return isCreatedBlock
+        return isCreatedBlock;
     }
 
     /**
@@ -42,21 +42,21 @@ class UsersBackUpUtils {
         const date = new Date();
 
         let block = 1;
-        let dataBlock: any[] = [];
-
+        let dataBlock: string[] = [];
+        
         dataUsers.items.forEach((user: User, index: number) => {
             
             dataBlock.push(Object.values(user).toString());
 
-            const fileName = `${path}/${CONSTANTS.MONTH_NAMES[date.getMonth()]}_backup_${block}.csv`;
-
             if (dataBlock.length === maxLinesBlock) {
+                const fileName = `${path}/${CONSTANTS.MONTH_NAMES[date.getMonth()]}_backup_${block}.csv`;
                 promises.push(handlerFilesUtil.writeFile(fileName, dataBlock.join('\n')));
                 block++;
                 dataBlock = [];
             }
 
             if (index === (dataUsers.items.length - 1) && dataBlock.length) {
+                const fileName = `${path}/${CONSTANTS.MONTH_NAMES[date.getMonth()]}_backup_${block}.csv`;
                 promises.push(handlerFilesUtil.writeFile(fileName, dataBlock.join('\n')));
                 block++;
             }
