@@ -24,9 +24,9 @@ class UsersBackUpController {
             if (!isCreatedBackUp) {                
                 error.message = CONSTANTS.SERVER_ERROR;
                 throw error;
-            } else {
-                return res.status(204).send();
-            }
+            } 
+            
+            return res.status(204).send();
 
         } catch (err: any) {
             return res.status(err.status || 500).send(err);
