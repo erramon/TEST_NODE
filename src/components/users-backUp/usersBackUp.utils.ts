@@ -46,7 +46,7 @@ class UsersBackUpUtils {
 
         dataUsers.items.forEach((user: User, index: number) => {
             
-            dataBlock.push(Object.values(user));
+            dataBlock.push(Object.values(user).toString());
 
             const fileName = `${path}/${CONSTANTS.MONTH_NAMES[date.getMonth()]}_backup_${block}.csv`;
 

@@ -2,7 +2,7 @@ export interface BackUpResponse {
     items: User[];
 }
 
-export interface User  {
+export interface User {
     index: number;
     index_start_at: number;
     integer: number;
@@ -11,5 +11,5 @@ export interface User  {
     surname: string;
     fullname: string;
     email: string;
-    bool: boolean
+    bool: boolean;
 }

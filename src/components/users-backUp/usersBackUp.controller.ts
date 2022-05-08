@@ -1,17 +1,21 @@
 import { Request, Response } from 'express';
 import { CONSTANTS } from '../../common/constants';
+import { ResponseError } from '../../common/models';
 import { usersBackUpUtils } from './usersBackUp.utils';
+
 
 class UsersBackUpController {
 
     async createBackupByApi(req: Request, res: Response) {
-        const error = new Error();
+        const error: ResponseError = new Error();        
+        
         const api = req.query.api as string;
         const apiUrl = process.env[api];
 
         try {
             if (!apiUrl) {
                 error.message = CONSTANTS.BAD_REQUEST_ERROR;
+                error.status = 404;
                 throw error;
             }
 
@@ -21,12 +25,12 @@ class UsersBackUpController {
                 error.message = CONSTANTS.SERVER_ERROR;
                 throw error;
             } else {
-                res.status(204).send();
+                return res.status(204).send();
             }
 
-        } catch (err) {
+        } catch (err: any) {
             console.log(err);
-            return res.status(500).send(err);
+            return res.status(err.status || 500).send(err);
         }
     }
 
