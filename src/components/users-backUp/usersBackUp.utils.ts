@@ -34,18 +34,18 @@ class UsersBackUpUtils {
      * Create Blocks by Maximum lines specified by parameter
      * @param dataUsers
      * @param path
-     * @param maxLinesBlock
+     * @param maxBlockLines
      * @returns {Promise<boolean[]>} A promises array that contains if blocks were created
      */
-    createBlocks(dataUsers: BackUpResponse, path: string, maxLinesBlock: number): Promise<boolean[]> {
-        if (maxLinesBlock <= 0) throw 'Invalid max lines block';
+    createBlocks(dataUsers: BackUpResponse, path: string, maxBlockLines: number): Promise<boolean[]> {
+        if (maxBlockLines <= 0) throw 'Invalid max block lines ';
 
         const promises: Promise<boolean>[] = [];
         const date = new Date();
         let block = 1;
 
-        for (let i = 0; i < dataUsers.items.length; i += maxLinesBlock) {
-            const usersByBlock = dataUsers.items.slice(i, i + maxLinesBlock);
+        for (let i = 0; i < dataUsers.items.length; i += maxBlockLines) {
+            const usersByBlock = dataUsers.items.slice(i, i + maxBlockLines);
             const dataBlock = usersByBlock.map((user: User) => Object.values(user).toString()).join('\n');
             const fileName = `${path}/${CONSTANTS.MONTH_NAMES[date.getMonth()]}_backup_${block++}.csv`;
             promises.push(handlerFilesUtil.writeFile(fileName, dataBlock));

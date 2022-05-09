@@ -1,15 +1,15 @@
 {
     "compilerOptions": {
-      "experimentalDecorators": true,      
-      "emitDecoratorMetadata": true,      
-      "target": "es2017",            
-      "module": "commonjs",          
-      "outDir": "./build",           
-      "strict": true,                
-      "strictNullChecks": false,     
-      "moduleResolution": "node",    
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "target": "es2017",
+      "module": "commonjs",
+      "outDir": "./build",
+      "strict": true,
+      "strictNullChecks": false,
+      "moduleResolution": "node",
       "resolveJsonModule": true,
-      "esModuleInterop": true        
+      "esModuleInterop": true
     },
     "include": [
         "src/**/*",
@@ -17,4 +17,3 @@
     ],
     "exclude": ["node_modules"]
   }
-  
