@@ -3,12 +3,11 @@ import { CONSTANTS } from '../../common/constants';
 import { ResponseError } from '../../common/models';
 import { usersBackUpUtils } from './usersBackUp.utils';
 
-
 class UsersBackUpController {
 
     async createBackupByApi(req: Request, res: Response) {
-        const error: ResponseError = new Error();        
-        
+        const error: ResponseError = new Error();
+
         const api = req.query.api as string;
         const apiUrl = process.env[api];
 
@@ -19,13 +18,13 @@ class UsersBackUpController {
                 throw error;
             }
 
-            const isCreatedBackUp = await usersBackUpUtils.createBackup(apiUrl, api);            
-            
-            if (!isCreatedBackUp) {                
+            const isCreatedBackUp = await usersBackUpUtils.createBackup(apiUrl, api);
+
+            if (!isCreatedBackUp) {
                 error.message = CONSTANTS.SERVER_ERROR;
                 throw error;
-            } 
-            
+            }
+
             return res.status(204).send();
 
         } catch (err: any) {
@@ -35,8 +34,4 @@ class UsersBackUpController {
 
 }
 
-export const usersBackUpController = new UsersBackUpController(); 
-
-
-
-
+export const usersBackUpController = new UsersBackUpController();

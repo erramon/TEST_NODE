@@ -7,8 +7,8 @@ class UsersBackUpUtils {
 
     /**
      * Clean directory backups and init process create blocks
-     * @param apiUrl 
-     * @param api 
+     * @param apiUrl
+     * @param api
      * @returns {Promise<boolean[]>} A promises array that contains if blocks were created
      */
     async createBackup(apiUrl: string, api: string): Promise<boolean[]> {
@@ -32,9 +32,9 @@ class UsersBackUpUtils {
 
     /**
      * Create Blocks by Maximum lines specified by parameter
-     * @param dataUsers 
-     * @param path 
-     * @param maxLinesBlock 
+     * @param dataUsers
+     * @param path
+     * @param maxLinesBlock
      * @returns {Promise<boolean[]>} A promises array that contains if blocks were created
      */
     createBlocks(dataUsers: BackUpResponse, path: string, maxLinesBlock: number): Promise<boolean[]> {
@@ -55,4 +55,4 @@ class UsersBackUpUtils {
     }
 }
 
-export const usersBackUpUtils = new UsersBackUpUtils(); 
+export const usersBackUpUtils = new UsersBackUpUtils();

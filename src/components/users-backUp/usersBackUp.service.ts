@@ -7,12 +7,12 @@ class UsersBackUpService {
 
     /**
      * Get external data for backup
-     * @param url 
-     * @returns {Promise<BackUpResponse>} A promise that contains users data 
+     * @param url
+     * @returns {Promise<BackUpResponse>} A promise that contains users data
      */
     getDataUsers(url: string): Promise<BackUpResponse> {
 
-        // uncomment if limit exceeded requests 
+        // uncomment if limit exceeded requests
         // const dataMocks: BackUpResponse = url.split('/').pop() === 'api1' ? mocksApi1 : mocksApi2;
         // return Promise.resolve(dataMocks);
 

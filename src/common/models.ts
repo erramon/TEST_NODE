@@ -1,4 +1,4 @@
-export interface ResponseError extends Error {   
+export interface ResponseError extends Error {
     status?: number;
     code?: number;
-} 
+}

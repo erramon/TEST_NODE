@@ -3,8 +3,8 @@ import * as fs from 'fs';
 class HandlerFilesUtil {
 
     /**
-     * 
-     * @param pathDirectory 
+     *
+     * @param pathDirectory
      * @returns {Promise<boolean | boolean[]>} A promise that contains if the directory was cleaned
      */
     cleanDirectory(pathDirectory: string): Promise<boolean | boolean[]> {
@@ -19,10 +19,10 @@ class HandlerFilesUtil {
                             filesDeleted.push(this.deleteFile(pathDirectory + '/' + file));
                         });
                         resolve(Promise.all(filesDeleted));
-                    } else {                        
+                    } else {
                         resolve(true);
                     }
-                    
+
                 } else {
                     fs.mkdirSync(pathDirectory, { recursive: true });
                     resolve(true);
@@ -35,8 +35,8 @@ class HandlerFilesUtil {
     }
 
     /**
-     * 
-     * @param pathDirectory 
+     *
+     * @param pathDirectory
      * @returns {Promise<string[]>} A promise that contains the files of directory
      */
     readDirectory(pathDirectory: string): Promise<string[]> {
@@ -49,8 +49,8 @@ class HandlerFilesUtil {
     }
 
     /**
-     * 
-     * @param pathFile 
+     *
+     * @param pathFile
      * @returns {Promise<boolean>} A promise that contains if the file was delete
      */
     deleteFile(pathFile: string): Promise<boolean> {
@@ -63,8 +63,8 @@ class HandlerFilesUtil {
     }
 
     /**
-     * 
-     * @param pathFile 
+     *
+     * @param pathFile
      * @returns {Promise<string>} A promise that contains the file data
      */
     readFile(pathFile: string): Promise<string> {
@@ -77,9 +77,9 @@ class HandlerFilesUtil {
     }
 
     /**
-     * 
-     * @param pathFile 
-     * @param data 
+     *
+     * @param pathFile
+     * @param data
      * @returns {Promise<boolean>} A promise that contains if the file was created
      */
     writeFile(pathFile: string, data: string): Promise<boolean> {

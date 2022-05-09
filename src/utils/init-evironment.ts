@@ -8,7 +8,7 @@ class InitEvironment {
         try {
             const envFileData = JSON.parse(fs.readFileSync(envFilePath, 'utf8'));
             Object.keys(envFileData.API_MOCS).forEach(api => {
-                process.env[api] = envFileData.API_MOCS[api].url;             
+                process.env[api] = envFileData.API_MOCS[api].url;
             });
         } catch (error) {
             console.error(`File ${envFileName}.json not found in directory config`);

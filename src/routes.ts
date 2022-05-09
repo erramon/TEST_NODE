@@ -15,4 +15,4 @@ class RegisterRoutes {
 }
 
 const registerRoutes = new RegisterRoutes();
-export default registerRoutes.router;   
+export default registerRoutes.router;
