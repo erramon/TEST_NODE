@@ -2,6 +2,7 @@ import { handlerFilesUtil } from '../../utils/handlerFiles';
 import { usersBackUpService } from './usersBackUp.service';
 import { BackUpResponse, User } from './models';
 import { CONSTANTS } from '../../common/constants';
+import * as path from 'path';
 
 class UsersBackUpUtils {
 
@@ -12,16 +13,16 @@ class UsersBackUpUtils {
      * @returns {Promise<boolean[]>} A promises array that contains if blocks were created
      */
     async createBackup(apiUrl: string, api: string): Promise<boolean[]> {
-        const path = `src/outputs/${api}`;
+        const pathBackup = path.join(__dirname, `../../outputs/${api}`);
         const MAX_BLOCK_LINES = 999;
         let isCreatedBlocks: boolean[];
 
         try {
-            await handlerFilesUtil.cleanDirectory(path);
+            await handlerFilesUtil.cleanDirectory(pathBackup);
 
             const usersBackUpData = await usersBackUpService.getDataUsers(apiUrl);
 
-            isCreatedBlocks = await this.createBlocks(usersBackUpData, path, MAX_BLOCK_LINES);
+            isCreatedBlocks = await this.createBlocks(usersBackUpData, pathBackup, MAX_BLOCK_LINES);
 
         } catch (err) {
             console.error(`Error create users backUp data url: ${apiUrl}`);

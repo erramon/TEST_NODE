@@ -1,7 +1,7 @@
 import * as https from 'https';
 import { BackUpResponse } from './models';
-import mocksApi1 from '../../../mocksdata/mocksapi1backup.json';
-import mocksApi2 from '../../../mocksdata/mocksapi2backup.json';
+import * as path from 'path';
+import * as fs from 'fs';
 
 class UsersBackUpService {
 
@@ -13,8 +13,18 @@ class UsersBackUpService {
     getDataUsers(url: string): Promise<BackUpResponse> {
 
         // uncomment if limit exceeded requests
-        // const dataMocks: BackUpResponse = url.split('/').pop() === 'api1' ? mocksApi1 : mocksApi2;
-        // return Promise.resolve(dataMocks);
+        // const api = url.split('/').pop();
+        // const mock = path.join(__dirname, `../../../mocksdata/mocks${api}backup.json`);
+        // let dataResponse: BackUpResponse;
+
+        // try {
+        //     const data = fs.readFileSync(mock, 'utf8');
+        //     dataResponse = JSON.parse(data);
+        // } catch {
+        //     console.error('Error get data to mocks')
+        // }
+
+        // return Promise.resolve(dataResponse);
 
         return new Promise((resolve, reject) => {
             https.get(url, resp => {

@@ -1,10 +1,11 @@
 import * as fs from 'fs';
+import * as path from 'path';
 
 class InitEvironment {
 
     loadEnv(): void {
         const envFileName = process.env.NODE_ENV.trim();
-        const envFilePath = `src/config/${envFileName}.json`;
+        const envFilePath = path.join(__dirname, `../config/${envFileName}.json`);
         try {
             const envFileData = JSON.parse(fs.readFileSync(envFilePath, 'utf8'));
             Object.keys(envFileData.API_MOCS).forEach(api => {
