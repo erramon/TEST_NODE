@@ -15,18 +15,17 @@ class HandlerFilesUtil {
                     const filesDeleted: Promise<boolean>[] = [];
 
                     if (files.length) {
-                        files.forEach(async (file) => {
+                        files.forEach(file => {
                             filesDeleted.push(this.deleteFile(pathDirectory + '/' + file));
                         });
-                        resolve(Promise.all(filesDeleted));
-                    } else {
-                        resolve(true);
+                        return resolve(Promise.all(filesDeleted));
                     }
 
                 } else {
                     fs.mkdirSync(pathDirectory, { recursive: true });
-                    resolve(true);
                 }
+
+                resolve(true);
 
             } catch (err) {
                 reject(err);
