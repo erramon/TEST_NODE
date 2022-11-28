@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config();  
 
 import RegisterRoutes from './routes';
+import Utils from './utils/Utils';
 
 class Server {
   public app: Application;
