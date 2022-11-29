@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { indexController } from './components/index.controller';
+import { getApiController } from './components/getApi/getApi.controller';
 
 class RegisterRoutes {
 
@@ -9,9 +10,10 @@ class RegisterRoutes {
          this.config();
     }
     config(): void {
-        this.router.get('/', indexController.index);
+        //this.router.get('/', indexController.index);
+		this.router.get('/', getApiController.index);
     }
 }
 
 const registerRoutes = new RegisterRoutes();
-export default registerRoutes.router;   
+export default registerRoutes.router;
